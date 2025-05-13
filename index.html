@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="logo.png">
+    <title>JH File Transfer</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font: sans-serif;
+    box-sizing: border-box;
+}
+body, html{
+    margin: 0; 
+    padding: 0; 
+    height: 100%; 
+    overflow: hidden;
+}
+/*Preloarder*/
+#preloarder{
+    background: #000 url(preloarder.gif) no-repeat center center;
+    background-size: 15%;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+.loaderWrapper--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+body{
+    background-color: #171c24;
+}
+/*Page start*/
+.loading-container{
+    width: 100%;
+    height: 100vh;
+    background: #171c24;
+    animation: prelorder-hidden ease 8s;
+}
+.lording{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    color: #fff;
+    font-size: 2vw;
+    font-weight: 700;
+    visibility: hidden;
+}
+.lt1{
+    visibility: hidden;
+    animation: animation-lord1 ease 4s;
+}
+.lt2{
+    visibility: hidden;
+    animation: animation-lord2 ease 4s;
+}
+.lt3{
+    visibility: hidden;
+    animation: animation-lord3 ease 4s;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+/*Animation*/
+@keyframes animation-lord1{
+    0%{
+        visibility: visible;
+        opacity: 0.3;
+    }
+    16.66%{
+        opacity: .5;
+    }
+    33.33%{
+        opacity: 1;
+    }
+}
+@keyframes animation-lord2{
+    0%{
+        opacity: 0;
+    }
+    16.66%{
+        opacity: 0;
+    }
+    33.33%{
+        visibility: visible;
+        opacity: 0.3;
+    }
+    49.99%{
+        opacity: .5;
+    }
+    66.66%{
+        opacity: 1;
+    }
+}
+@keyframes animation-lord3{
+    0%{
+        opacity: 0;
+    }
+    16.66%{
+        opacity: 0;
+    }
+    33.33%{
+        opacity: 0;
+    }
+    49.99%{
+        opacity: 0;
+    }
+    49.99%{
+        opacity: 0;
+    }
+    66.66%{
+        visibility: visible;
+        opacity: 0.3;
+    }
+    83.32%{
+        opacity: .5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes prelorder-hidden{
+    0%{
+        height: 100vh;
+        background: #171c24;
+    }
+    50%{
+        height: 100vh;
+        background: #070020;
+    }
+    87.2%{
+        background-color: #070020;
+    }
+    100%{
+        height: 0vh;
+        display: none;
+        background-color: transparent;
+    }
+}
+    </style>
+</head>
+<body>
+      <!--Preloarder-->  
+  <div id="preloarder" class="loaderWrapper"></div>
+    <script> 
+        window.addEventListener('load', (event) => {
+         const preloarder = document.getElementById('preloarder');
+            preloarder.classList.add('loaderWrapper--hidden');
+
+            preloarder.addEventListener('transitionend', () => {
+                preloarder.remove();
+            });
+        });
+    </script> 
+
+  <!--end of prelording-->
+    <script>
+        document.addEventListener('contextmenu', disableRightClick);
+        function disableRightClick(e){
+        e.preventDefault();
+    }
+    </script>
+    <!--Page start-->
+    
+    <div class="loading-container" id="lording--con">
+        <div class="lording">
+            <p>
+                <span class="lt1">JH</span>
+                <span class="lt2">File</span>
+                <span class="lt3">Transfer</span></p>
+        </div>
+    </div>
+    <!--Page content-->
+    <iframe src="home.html" id="iframe" frameborder="0" width="100%" height="100vh" style="visibility: hidden;"></iframe> 
+    <!--script-->
+    <script>
+        function hideLord(){
+            document.getElementById("lording--con").style.display="none";
+            document.getElementById("iframe").style.visibility="visible";
+        }
+        setTimeout("hideLord()", 7900);
+    </script>
+</body>
+</html>
