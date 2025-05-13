@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JH FileTransfer | Secure Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary-color: #3f37c9;
+            --text-color: #2b2d42;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --error-color: #ef233c;
+            --success-color: #4cc9f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 420px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+        
+        .logo {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .logo img {
+            height: 42px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .logo .tagline {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            margin-top: 0.25rem;
+        }
+        
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.75rem;
+            color: var(--text-color);
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            transition: all 0.2s ease;
+        }
+        
+        input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 0.875rem;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, #3730a3 100%);
+            transform: translateY(-1px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            font-size: 0.8125rem;
+            color: var(--dark-gray);
+            margin-top: 0.5rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .forgot-password:hover {
+            color: var(--primary-color);
+        }
+        
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.8125rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .footer {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: var(--dark-gray);
+            text-align: center;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                width: 90%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <span class="logo-icon"><i class="fas fa-paper-plane"></i></span>
+            <h1>JH FileTransfer</h1>
+            <div class="tagline">Secure Enterprise File Sharing</div>
+        </div>
+        
+        <h2>Sign In to Your Account</h2>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="error-message" id="username-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                </div>
+                <div class="error-message" id="password-error"></div>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn">
+                <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i> Sign In
+            </button>
+        </form>
+        
+        <div class="footer">
+            &copy; 2023 JH FileTransfer. All rights reserved. <span id="version">v2.5.1</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // User database (in a real app, this would be server-side)
+            const userDatabase = {
+                'admin@jhfile.com': {
+                    password: 'Admin@Secure123',
+                    name: 'Administrator',
+                    role: 'admin'
+                },
+                'manager@jhfile.com': {
+                    password: 'Manager@Access2025',
+                    name: 'Manager User',
+                    role: 'manager'
+                },
+                'user.demo@jhfile.com': {
+                    password: 'Demo@Password1',
+                    name: 'Demo User',
+                    role: 'user'
+                }
+            };
+
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.classList.toggle('fa-eye-slash');
+            });
+            
+            // Form validation and submission
+            const loginForm = document.getElementById('loginForm');
+            const usernameError = document.getElementById('username-error');
+            const passwordError = document.getElementById('password-error');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset errors
+                usernameError.style.display = 'none';
+                passwordError.style.display = 'none';
+                
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+                let isValid = true;
+                
+                // Validate username
+                if (username === '') {
+                    usernameError.textContent = 'Username is required';
+                    usernameError.style.display = 'block';
+                    isValid = false;
+                } else if (username.length < 4) {
+                    usernameError.textContent = 'Username must be at least 4 characters';
+                    usernameError.style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate password
+                if (password === '') {
+                    passwordError.textContent = 'Password is required';
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                } else if (password.length < 8) {
+                    passwordError.textContent = 'Password must be at least 8 characters';
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                }
+                
+                // If valid, check credentials
+                if (isValid) {
+                    // Simulate loading
+                    const btn = loginForm.querySelector('button');
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i> Authenticating...';
+                    btn.disabled = true;
+                    
+                    // Simulate API call delay
+                    setTimeout(() => {
+                        // Check credentials
+                        if (userDatabase[username] && userDatabase[username].password === password) {
+                            // Store user session (in a real app, use proper session management)
+                            sessionStorage.setItem('currentUser', JSON.stringify({
+                                username: username,
+                                name: userDatabase[username].name,
+                                role: userDatabase[username].role,
+                                loggedInAt: new Date().toISOString()
+                            }));
+                            
+                            // Redirect to home page
+                            window.location.href = 'home.html';
+                        } else {
+                            // Failed login
+                            passwordError.textContent = 'Invalid username or password';
+                            passwordError.style.display = 'block';
+                        }
+                        
+                        btn.innerHTML = '<i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i> Sign In';
+                        btn.disabled = false;
+                    }, 800);
+                }
+            });
+            
+            // Add version number
+            document.getElementById('version').textContent = 'v2.5.1';
+        });
+    </script>
+</body>
+</html>
