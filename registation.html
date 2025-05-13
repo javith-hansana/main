@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JH FileTransfer | Create Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body class="day-mode">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <i class="fas fa-sun"></i>
+        <label class="switch">
+            <input type="checkbox" id="theme-switch">
+            <span class="slider round"></span>
+        </label>
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-paper-plane"></i></span>
+                <h1>JH <span>FileTransfer</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="how-to-use.html">How to Use</a></li>
+                    <li><a href="home.html#packages">Packages</a></li>
+                    <li><a href="home.html#features">Features</a></li>
+                    <li><a href="home.html#contact">Contact</a></li>
+                    <li><a href="signin.html" class="btn-signin">Sign In</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Registration Form -->
+    <section class="registration">
+        <div class="container">
+            <div class="registration-header">
+                <h2>Create Your Account</h2>
+                <p>Join JH FileTransfer to experience secure, professional file sharing</p>
+            </div>
+            
+            <form id="registrationForm" class="registration-form">
+                <!-- Progress Steps -->
+                <div class="progress-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Basic Info</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Verification</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Package</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Payment</div>
+                    </div>
+                    <div class="step" data-step="5">
+                        <div class="step-number">5</div>
+                        <div class="step-label">Complete</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Basic Information -->
+                <div class="form-step active" data-step="1">
+                    <!-- Profile Image Upload Section -->
+                    <div class="profile-upload-section">
+                        <div class="profile-preview-container">
+                            <div class="profile-preview">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Placeholder" id="profilePreview">
+                            </div>
+                            <button type="button" class="btn-secondary" id="uploadProfileBtn">Upload Photo</button>
+                            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" style="display: none;">
+                        </div>
+                        <p class="upload-hint">Recommended size: 300x300 pixels (JPG, PNG)</p>
+                    </div>
+                    
+                    <div class="form-group two-columns">
+                        <div class="input-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group two-columns">
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                            <div class="password-strength">
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-text">Password Strength</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthday">Birthday</label>
+                        <input type="date" id="birthday" name="birthday" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary next-step" data-next="2">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Verification - Updated Design -->
+                <div class="form-step" data-step="2">
+                    <div class="verification-container">
+                        <h3 class="verification-title">Secure Your Account</h3>
+                        <p class="verification-subtitle">Verify your identity to protect your account</p>
+                        
+                        <div class="verification-tabs">
+                            <button class="verification-tab active" data-tab="email">
+                                <i class="fas fa-envelope"></i> Email Verification
+                            </button>
+                            <button class="verification-tab" data-tab="sms">
+                                <i class="fas fa-mobile-alt"></i> SMS Verification
+                            </button>
+                        </div>
+                        
+                        <div class="verification-content active" data-tab-content="email">
+                            <div class="verification-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>Email Verification</h4>
+                                    <p>We'll send a 6-digit code to your email address</p>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-primary send-code-btn" data-type="email">
+                                Send Verification Code
+                            </button>
+                        </div>
+                        
+                        <div class="verification-content" data-tab-content="sms">
+                            <div class="verification-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>SMS Verification</h4>
+                                    <p>Enter your mobile number to receive a code via SMS</p>
+                                </div>
+                            </div>
+                            <div class="phone-input-group">
+                                <input type="tel" id="phoneNumber" placeholder="+94 70 123 4567">
+                                <button type="button" class="btn-primary send-code-btn" data-type="sms">
+                                    Send Code
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="verification-code-container" style="display: none;">
+                            <div class="code-input-group">
+                                <label for="verificationCode">Enter Verification Code</label>
+                                <div class="code-inputs">
+                                    <input type="text" maxlength="1" class="code-input">
+                                    <input type="text" maxlength="1" class="code-input">
+                                    <input type="text" maxlength="1" class="code-input">
+                                    <input type="text" maxlength="1" class="code-input">
+                                    <input type="text" maxlength="1" class="code-input">
+                                    <input type="text" maxlength="1" class="code-input">
+                                </div>
+                                <p class="code-hint">
+                                    <i class="fas fa-info-circle"></i>
+                                    Verification code sent to <span class="verification-target">email@example.com</span>
+                                </p>
+                                <button type="button" class="btn-secondary resend-code">
+                                    <i class="fas fa-redo"></i> Resend Code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary prev-step" data-prev="1">Back</button>
+                        <button type="button" class="btn-primary next-step" data-next="3">Verify & Continue</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Package Selection -->
+                <div class="form-step" data-step="3">
+                    <h3>Select Your Package</h3>
+                    <p>Choose the plan that fits your needs</p>
+                    
+                    <div class="package-options">
+                        <div class="package-card">
+                            <div class="package-header">
+                                <h4>Starter</h4>
+                                <div class="price">$15.99<span>/month</span></div>
+                            </div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> 100GB Storage</li>
+                                <li><i class="fas fa-check"></i> 10GB File Size Limit</li>
+                                <li><i class="fas fa-check"></i> Basic Security</li>
+                                <li><i class="fas fa-check"></i> 5 Team Members</li>
+                                <li><i class="fas fa-check"></i> Email Support</li>
+                            </ul>
+                            <button type="button" class="btn-secondary select-package" data-package="starter">Select</button>
+                        </div>
+                        
+                        <div class="package-card popular">
+                            <div class="popular-badge">Most Popular</div>
+                            <div class="package-header">
+                                <h4>Professional</h4>
+                                <div class="price">$30.99<span>/month</span></div>
+                            </div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> 500GB Storage</li>
+                                <li><i class="fas fa-check"></i> 25GB File Size Limit</li>
+                                <li><i class="fas fa-check"></i> Advanced Security</li>
+                                <li><i class="fas fa-check"></i> 20 Team Members</li>
+                                <li><i class="fas fa-check"></i> Priority Support</li>
+                            </ul>
+                            <button type="button" class="btn-primary select-package" data-package="professional">Select</button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-header">
+                                <h4>Enterprise</h4>
+                                <div class="price">$120.99<span>/month</span></div>
+                            </div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> Unlimited Storage</li>
+                                <li><i class="fas fa-check"></i> No File Size Limit</li>
+                                <li><i class="fas fa-check"></i> Military-Grade Security</li>
+                                <li><i class="fas fa-check"></i> Unlimited Team Members</li>
+                                <li><i class="fas fa-check"></i> 24/7 Dedicated Support</li>
+                            </ul>
+                            <button type="button" class="btn-secondary select-package" data-package="enterprise">Select</button>
+                        </div>
+                    </div>
+                    
+                    <div class="terms-agreement">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary prev-step" data-prev="2">Back</button>
+                        <button type="button" class="btn-primary next-step" data-next="4">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Payment -->
+                <div class="form-step" data-step="4">
+                    <h3>Payment Information</h3>
+                    <p>Enter your payment details to complete registration</p>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method active" data-method="credit">
+                            <i class="fab fa-cc-visa"></i>
+                            <span>Credit/Debit Card</span>
+                        </div>
+                        <div class="payment-method" data-method="paypal">
+                            <i class="fab fa-paypal"></i>
+                            <span>PayPal</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-details credit-details">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div class="form-group two-columns">
+                            <div class="input-group">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+                            </div>
+                            <div class="input-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" name="cardName" placeholder="John Doe">
+                        </div>
+                    </div>
+                    
+                    <div class="payment-details paypal-details" style="display: none;">
+                        <p>You will be redirected to PayPal to complete your payment after registration.</p>
+                        <div class="paypal-logo">
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary prev-step" data-prev="3">Back</button>
+                        <button type="button" class="btn-primary next-step" data-next="5">Complete Registration</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Completion -->
+                <div class="form-step" data-step="5">
+                    <div class="completion-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Registration Complete!</h3>
+                        <p>Thank you for joining JH FileTransfer. Your account is being reviewed and will be activated within 2 business days.</p>
+                        <p>We apologize for this brief delay. You'll receive a confirmation email once your account is active.</p>
+                        <p>Please sign in to your dashboard to complete your profile setup, including uploading a profile picture.</p>
+                        
+                        <div class="completion-actions">
+                            <a href="#" class="btn-primary">Go to Dashboard</a>
+                            <a href="home.html" class="btn-secondary">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <span class="logo-icon"><i class="fas fa-paper-plane"></i></span>
+                        <h3>JH <span>FileTransfer</span></h3>
+                    </div>
+                    <p>Secure file sharing for professionals and businesses. Fast, reliable, and enterprise-grade security.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="home.html#packages">Packages</a></li>
+                        <li><a href="home.html#features">Features</a></li>
+                        <li><a href="home.html#testimonials">Testimonials</a></li>
+                        <li><a href="home.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="how-to-use.html">How to use</a></li>
+                        <li><a href="#">Feedbacks</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates and special offers</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="copyright-year">2025</span> JH FileTransfer. All rights reserved. Platform by Javith Hansana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Profile Picture Upload Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Upload Profile Picture</h3>
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag & drop your image here or click to browse</p>
+                <input type="file" id="profileUpload" accept="image/*">
+            </div>
+            <div class="preview-area" id="previewArea" style="display: none;">
+                <img id="imagePreview" src="#" alt="Preview">
+                <div class="crop-controls">
+                    <button class="btn-secondary" id="cancelCrop">Cancel</button>
+                    <button class="btn-primary" id="saveCrop">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="registration.js"></script>
+</body>
+</html>
